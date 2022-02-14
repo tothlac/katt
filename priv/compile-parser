@@ -4,8 +4,13 @@
 %% grammar file.
 
 main(_) ->
-    io:format("Compile katt_blueprint.peg~n"),
+    io:format("Compile katt_blueprint~n", []),
     DepsDir = os:getenv("REBAR_DEPS_DIR"),
     Neotoma =  DepsDir ++ "/neotoma/ebin",
     code:add_pathz(filename:absname(Neotoma)),
-    neotoma:file("priv/katt_blueprint.peg", [{output, "src/"}]).
+    try
+        neotoma:file("priv/katt_blueprint.peg", [{output, "src/"}])
+    catch _:Reason ->
+        io:format("Could not compile katt_bluepring.peg. Reason: ~p~n", [Reason])
+    end.
+
