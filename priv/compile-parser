@@ -4,6 +4,7 @@
 %% grammar file.
 
 main(_) ->
+    io:format("Compile katt_blueprint.peg~n"),
     DepsDir = os:getenv("REBAR_DEPS_DIR"),
     Neotoma =  DepsDir ++ "/neotoma/ebin",
     code:add_pathz(filename:absname(Neotoma)),
